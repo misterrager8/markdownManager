@@ -1,22 +1,22 @@
 :root,
 html[data-theme="light"] {
-  --primary-bg: #C5CCAC;
+  --primary-bg: #c3ccdf;
   --primary-txt: #1a1a1a;
 
-  --btn-color: #2D5273;
-  --btn-hover-text: #C5CCAC;
+  --btn-color: #335391;
+  --btn-hover-text: #cccccc;
 
-  --code-color: #066425;
-  --heading-color: #3c4a55;
+  --code-color: #335391;
+  --heading-color: #335391;
 }
 
 html[data-theme="dark"] {
-  --primary-bg: #152533;
-  --primary-txt: #E9EFD2;
+  --primary-bg: #020714;
+  --primary-txt: #cccccc;
 
-  --btn-color: #E9EFD2;
-  --btn-hover-text: #152533;
+  --btn-color: #567FE1;
+  --btn-hover-text: #1a1a1a;
 
-  --code-color: #51ba74;
-  --heading-color: #738592;
+  --code-color: #567FE1;
+  --heading-color: #567FE1;
 }
