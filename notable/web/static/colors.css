@@ -1,22 +1,22 @@
 :root,
 html[data-theme="light"] {
-  --primary-bg: #c3ccdf;
+  --primary-bg: #cccccc;
   --primary-txt: #1a1a1a;
 
-  --btn-color: #335391;
+  --btn-color: hsl(221, 47%, 40%);
   --btn-hover-text: #cccccc;
 
-  --code-color: #335391;
-  --heading-color: #335391;
+  --code-color: hsl(270, 37%, 40%);
+  --heading-color: hsl(270, 37%, 40%);
 }
 
 html[data-theme="dark"] {
-  --primary-bg: #020714;
+  --primary-bg: #1a1a1a;
   --primary-txt: #cccccc;
 
-  --btn-color: #567FE1;
+  --btn-color: hsl(224, 67%, 60%);
   --btn-hover-text: #1a1a1a;
 
-  --code-color: #567FE1;
-  --heading-color: #567FE1;
+  --code-color: hsl(280, 20%, 60%);
+  --heading-color: hsl(280, 20%, 60%);
 }

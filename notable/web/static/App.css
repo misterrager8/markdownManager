@@ -150,11 +150,12 @@ a:hover {
 
 ::-webkit-scrollbar {
   width: 2px;
+  height: 1px;
   background-color: var(--primary-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--primary-txt);
+  background-color: var(--code-color);
 }
 
 .full {
