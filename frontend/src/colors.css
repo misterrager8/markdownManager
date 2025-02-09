@@ -3,20 +3,20 @@ html[data-theme="light"] {
   --primary-bg: #cccccc;
   --primary-txt: #1a1a1a;
 
-  --btn-color: hsl(221, 47%, 40%);
+  --btn-color: hsl(226, 32%, 40%);
   --btn-hover-text: #cccccc;
 
-  --code-color: hsl(270, 37%, 40%);
-  --heading-color: hsl(270, 37%, 40%);
+  --code-color: hsl(226, 32%, 40%);
+  --heading-color: hsl(226, 32%, 40%);
 }
 
 html[data-theme="dark"] {
   --primary-bg: #1a1a1a;
   --primary-txt: #cccccc;
 
-  --btn-color: hsl(224, 67%, 60%);
+  --btn-color: hsl(230, 57%, 60%);
   --btn-hover-text: #1a1a1a;
 
-  --code-color: hsl(280, 20%, 60%);
-  --heading-color: hsl(280, 20%, 60%);
+  --code-color: hsl(230, 57%, 60%);
+  --heading-color: hsl(230, 57%, 60%);
 }
