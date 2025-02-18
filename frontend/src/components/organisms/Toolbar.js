@@ -8,17 +8,6 @@ import { api } from "../../util";
 
 export default function Toolbar({ selection, className }) {
   const multiCtx = useContext(MultiContext);
-  const [url, setUrl] = useState("");
-  const [showURL, setShowURL] = useState(false);
-
-  const onChangeURL = (e) => setUrl(e.target.value);
-
-  const savePage = (e) => {
-    e.preventDefault();
-    api("save_page", { path: multiCtx.currentNote.path, url: url }, (data) =>
-      multiCtx.setCurrentNote(data)
-    );
-  };
 
   const weekday = [
     "Sunday",
@@ -45,32 +34,43 @@ export default function Toolbar({ selection, className }) {
     "December",
   ];
 
+  const formatDate = () => {
+    let now = new Date().toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit",
+    });
+
+    return now;
+  };
+
   const formats = [
     {
+      icon: "type-bold",
       label: "bold",
       format: `**${selection.selected}**`,
     },
     {
+      icon: "type-italic",
       label: "italic",
       format: `*${selection.selected}*`,
     },
     {
+      icon: "type-h1",
       label: "heading",
       format: `### ${selection.selected}`,
     },
     {
+      icon: "hr",
       label: "hrule",
       format: "\n---\n",
     },
     {
-      label: "num-list",
-      format: `1. ${selection.selected.split("\n").join("\n1. ")}`,
-    },
-    {
+      icon: "sort-down-alt",
       label: "sort",
       format: `${selection.selected.split("\n").toSorted().join("\n")}`,
     },
     {
+      icon: "sort-down",
       label: "sort-reverse",
       format: `${selection.selected
         .split("\n")
@@ -79,84 +79,106 @@ export default function Toolbar({ selection, className }) {
         .join("\n")}`,
     },
     {
+      icon: "list-ul",
       label: "bullet-list",
       format: `- ${selection.selected.split("\n").join("\n- ")}`,
     },
     {
-      label: "checklist",
-      format: `- **[​　]** ${selection.selected
-        .split("\n")
-        .join("\n- **[​　]** ")}`,
-    },
-    {
+      icon: "check-lg",
       label: "check",
       format: `✓`,
     },
     {
+      icon: "code-slash",
       label: "code",
       format: `\`\`\`${selection.selected}\`\`\``,
     },
     {
+      icon: "code",
+      label: "code-inline",
+      format: `\`${selection.selected}\``,
+    },
+    {
+      icon: "image",
       label: "image",
       format: `![${selection.selected}]()`,
     },
     {
+      icon: "link",
       label: "link",
       format: `[${selection.selected}]()`,
     },
     {
+      icon: "type",
       label: "capitalize",
       format: `${
         selection.selected.charAt(0).toUpperCase() + selection.selected.slice(1)
       }`,
     },
     {
+      icon: "alphabet-uppercase",
       label: "allcaps",
       format: `${selection.selected.toUpperCase()}`,
     },
     {
+      icon: "alphabet",
       label: "alllower",
       format: `${selection.selected.toLowerCase()}`,
     },
     {
+      icon: "indent",
       label: "indent",
-      format: `    ${selection.selected}`,
+      format: `  ${selection.selected}`,
     },
     {
+      text: "( )",
       label: "parentheses",
       format: `(${selection.selected})`,
     },
     {
+      text: "{ }",
       label: "curly-braces",
       format: `{${selection.selected}}`,
     },
     {
+      text: "[ ]",
       label: "square-brackets",
       format: `[${selection.selected}]`,
     },
     {
+      text: "' '",
       label: "single-quotes",
       format: `'${selection.selected}'`,
     },
     {
+      text: '" "',
       label: "double-quotes",
       format: `"${selection.selected}"`,
     },
     {
+      icon: "calendar",
       label: "date-1",
       format: `${new Date().getDate()} ${monthNames[new Date().getMonth()]}`,
     },
     {
-      label: "date-2",
-      format: `${weekday[new Date().getDay()]}`,
-    },
-    {
+      icon: "clock",
       label: "date-3",
-      format: `${new Date().toLocaleTimeString()}`,
+      format: formatDate(),
     },
     {
-      label: "date-4",
-      format: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`,
+      icon: "highlighter",
+      label: "highlighter",
+      format: `<mark>${selection.selected}</mark>`,
+    },
+    {
+      icon: "superscript",
+      label: "superscript",
+      format: `<sup>${selection.selected}</sup>`,
+    },
+    {
+      icon: "type-strikethrough",
+      label: "type-strikethrough",
+      format: `~~${selection.selected}~~`,
     },
   ];
 
@@ -169,145 +191,17 @@ export default function Toolbar({ selection, className }) {
     multiCtx.setContent(new_);
   };
 
-  const formatDate = (format) => {
-    let format_ = formats.filter((x) => x.label === format)[0];
-    let new_ =
-      multiCtx.content.substring(0, selection.start) +
-      format_.format +
-      multiCtx.content.substring(selection.end, multiCtx.content.length);
-    multiCtx.setContent(new_);
-  };
-
   return (
     <div className={className} id="toolbar">
-      <ButtonGroup className="">
-        <Button onClick={() => copyFormat("bold")} icon="type-bold" />
-        <Button onClick={() => copyFormat("italic")} icon="type-italic" />
-        <Button onClick={() => copyFormat("heading")} icon="type-h1" />
-        <Button onClick={() => copyFormat("hrule")} icon="hr" />
-        <Button onClick={() => copyFormat("num-list")} icon="123" />
-        <Button onClick={() => copyFormat("bullet-list")} icon="list-ul" />
-        <Button onClick={() => copyFormat("checklist")} icon="ui-checks" />
-        <Button onClick={() => copyFormat("check")} icon="check-circle-fill" />
-        <Button onClick={() => copyFormat("code")} icon="code-slash" />
-        <Button onClick={() => copyFormat("image")} icon="image" />
-        <Button onClick={() => copyFormat("link")} icon="link-45deg" />
-        <Dropdown
-          classNameBtn="btn"
-          target="other-formats"
-          className="btn-group"
-          icon="type"
-          autoClose={false}>
-          <ButtonGroup size="sm" className="p-1">
-            <Button
-              className="border-0"
-              onClick={() => copyFormat("capitalize")}
-              icon="type"
-              text="Capitalize"
-            />
-            <Button
-              className="border-0"
-              onClick={() => copyFormat("allcaps")}
-              icon="alphabet-uppercase"
-              text="Upper"
-            />
-            <Button
-              className="border-0"
-              onClick={() => copyFormat("alllower")}
-              icon="alphabet"
-              text="Lower"
-            />
-          </ButtonGroup>
-        </Dropdown>{" "}
-        <Button onClick={() => copyFormat("indent")} icon="indent" />
-        <Button onClick={() => copyFormat("sort")} icon="sort-alpha-down" />
-        <Button
-          onClick={() => copyFormat("sort-reverse")}
-          icon="sort-alpha-up-alt"
-        />
-        <Dropdown
-          classNameBtn="btn"
-          target="other-formats"
-          className="btn-group"
-          icon="three-dots"
-          autoClose={false}>
-          <ButtonGroup size="sm" className="p-1">
-            <Button
-              onClick={() => copyFormat("parentheses")}
-              className="border-0"
-              text="()"
-            />
-            <Button
-              onClick={() => copyFormat("curly-braces")}
-              className="border-0"
-              text="{}"
-            />
-            <Button
-              onClick={() => copyFormat("square-brackets")}
-              className="border-0"
-              text="[]"
-            />
-            <Button
-              onClick={() => copyFormat("single-quotes")}
-              className="border-0"
-              text="''"
-            />
-            <Button
-              onClick={() => copyFormat("double-quotes")}
-              className="border-0"
-              text='""'
-            />
-          </ButtonGroup>
-        </Dropdown>
-        <Dropdown
-          classNameBtn="btn"
-          target="date-formats"
-          className="btn-group"
-          icon="calendar-date"
-          autoClose={false}>
-          <div className="p-1">
-            <Button
-              size="sm"
-              onClick={() => copyFormat("date-1")}
-              className="border-0 w-100"
-              text="'22 May'"
-            />
-            <Button
-              size="sm"
-              onClick={() => copyFormat("date-2")}
-              className="border-0 w-100"
-              text="'Wednesday'"
-            />
-            <Button
-              size="sm"
-              onClick={() => copyFormat("date-3")}
-              className="border-0 w-100"
-              text="'3:33 AM'"
-            />
-            <Button
-              size="sm"
-              onClick={() => copyFormat("date-4")}
-              className="border-0 w-100"
-              text="'2024-05-22'"
-            />
-          </div>
-        </Dropdown>
-        <Button
-          className={showURL ? "active" : ""}
-          icon="markdown-fill"
-          onClick={() => setShowURL(!showURL)}
-        />
-      </ButtonGroup>
-      {showURL && (
-        <form onSubmit={(e) => savePage(e)} className="mt-3 w-50">
-          <Input
-            className="form-control-sm"
-            placeholder="URL"
-            onChange={onChangeURL}
-            value={url}
+      <ButtonGroup>
+        {formats.map((x) => (
+          <Button
+            icon={x.icon}
+            text={x.text}
+            onClick={() => copyFormat(x.label)}
           />
-        </form>
-      )}
+        ))}
+      </ButtonGroup>
     </div>
   );
 }

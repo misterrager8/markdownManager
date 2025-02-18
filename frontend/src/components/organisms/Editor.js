@@ -80,7 +80,7 @@ export default function Editor({ className }) {
             <div
               id="reader"
               dangerouslySetInnerHTML={{
-                __html: markdownit().render(multiCtx.content),
+                __html: markdownit({ html: true }).render(multiCtx.content),
               }}></div>
           </div>
         )}

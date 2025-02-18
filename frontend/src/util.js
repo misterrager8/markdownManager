@@ -17,7 +17,7 @@ export const sorts = [
   {
     name: "favorited",
     label: "Pinned",
-    icon: "star-fill",
+    icon: "pin-angle-fill",
   },
 ];
 

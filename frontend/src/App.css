@@ -60,7 +60,12 @@ body {
 
 #reader code {
   font-family: monospace;
-  color: var(--code-color);
+  color: var(--purple);
+}
+
+#reader pre {
+  width: 75%;
+  margin: 10px auto;
 }
 
 #reader a {
@@ -80,6 +85,16 @@ body {
 #reader h4,
 #reader h5 {
   color: var(--heading-color);
+  text-align: center;
+  font-weight: lighter;
+  letter-spacing: 1px;
+}
+
+/* #reader, */
+#reader mark {
+  background-color: unset;
+  color: var(--orange);
+  font-weight: bold;
 }
 
 .dropdown-menu,
@@ -147,11 +162,6 @@ a:hover {
   .col-10 {
     width: 100% !important;
   }
-}
-
-.overflow-auto::-webkit-scrollbar,
-#editor::-webkit-scrollbar {
-  display: none;
 }
 
 .full {
@@ -228,4 +238,14 @@ a:hover {
   color: var(--btn-hover-text);
   background-color: var(--purple);
   border-color: transparent;
+}
+
+::-webkit-scrollbar {
+  background-color: var(--primary-bg);
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--btn-color);
 }
