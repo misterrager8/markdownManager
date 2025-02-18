@@ -46,6 +46,12 @@ export default function Nav({ className }) {
                   });
                 }}
                 className="btn border-0">
+                <img
+                  className="me-2 pb-1"
+                  src="favicon.svg"
+                  width={20}
+                  height={20}
+                />
                 notable
               </a>
             </ButtonGroup>
