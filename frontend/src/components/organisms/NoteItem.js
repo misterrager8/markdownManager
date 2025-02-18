@@ -25,7 +25,7 @@ export default function NoteItem({ item, className = "" }) {
           {item.name}
         </div>
         {item.favorited && (
-          <Icon className="py-1 small" name="pin-angle-fill" />
+          <Icon className="py-1 small purple" name="pin-angle-fill" />
         )}
       </div>
       <div className="between small mt-1">

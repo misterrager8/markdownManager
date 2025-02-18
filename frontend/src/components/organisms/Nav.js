@@ -56,6 +56,7 @@ export default function Nav({ className }) {
               </a>
             </ButtonGroup>
             <Button
+              className="green"
               size="sm"
               onClick={() => multiCtx.addNote()}
               text="New Note"
@@ -139,66 +140,76 @@ export default function Nav({ className }) {
         </div>
         <div className="col-5">
           <div className="between">
-            <ButtonGroup size="sm">
+            <div>
               {multiCtx.currentNote.length !== 0 &&
-                multiCtx.currentPage === "" && (
-                  <>
-                    {multiCtx.settings.mode !== "read" && (
-                      <Button
-                        onClick={() => {
-                          multiCtx.editNote(
-                            multiCtx.currentNote.path,
-                            multiCtx.content
-                          );
-                          setSaved(true);
-                          setTimeout(() => setSaved(false), 1500);
-                        }}
-                        // text={saved ? "Saved." : "Save"}
-                        icon={saved ? "check-lg" : "floppy2-fill"}
-                      />
-                    )}
-                    <Button
-                      onClick={() =>
-                        multiCtx.pinNote(multiCtx.currentNote.path)
-                      }
-                      text={multiCtx.currentNote.favorited ? "Unpin" : "Pin"}
-                      icon={
-                        "pin-angle" +
-                        (multiCtx.currentNote.favorited ? "-fill" : "")
-                      }
-                      className={multiCtx.currentNote.favorited ? "active" : ""}
-                    />
-                    <Button
-                      onClick={() => copyNote()}
-                      text={"Copy"}
-                      icon={"clipboard" + (copied ? "-check" : "")}
-                    />
-                    <Button
-                      onClick={() =>
-                        multiCtx.duplicateNote(multiCtx.currentNote.path)
-                      }
-                      text={"Duplicate"}
-                      icon="copy"
-                    />
-                    <Button
-                      onClick={() => setDeleting(!deleting)}
-                      text={"Delete"}
-                      icon={"trash2"}
-                    />
-                    {deleting && (
-                      <Button
-                        onClick={() => {
-                          multiCtx.deleteNote(multiCtx.currentNote.path);
-                          multiCtx.setCurrentNote([]);
-                          setDeleting(false);
-                        }}
-                        // text={"Delete"}
-                        icon={"question-lg"}
-                      />
-                    )}
-                  </>
+                multiCtx.currentPage === "" &&
+                multiCtx.settings.mode !== "read" && (
+                  <Button
+                    className="green me-2"
+                    onClick={() => {
+                      multiCtx.editNote(
+                        multiCtx.currentNote.path,
+                        multiCtx.content
+                      );
+                      setSaved(true);
+                      setTimeout(() => setSaved(false), 1500);
+                    }}
+                    // text={saved ? "Saved." : "Save"}
+                    icon={saved ? "check-lg" : "floppy2-fill"}
+                  />
                 )}
-            </ButtonGroup>
+              <ButtonGroup size="sm">
+                {multiCtx.currentNote.length !== 0 &&
+                  multiCtx.currentPage === "" && (
+                    <>
+                      <Button
+                        onClick={() =>
+                          multiCtx.pinNote(multiCtx.currentNote.path)
+                        }
+                        text={multiCtx.currentNote.favorited ? "Unpin" : "Pin"}
+                        icon={
+                          "pin-angle" +
+                          (multiCtx.currentNote.favorited ? "-fill" : "")
+                        }
+                        className={
+                          "purple" +
+                          (multiCtx.currentNote.favorited ? " active" : "")
+                        }
+                      />
+                      <Button
+                        onClick={() => copyNote()}
+                        text={"Copy"}
+                        icon={"clipboard" + (copied ? "-check" : "")}
+                      />
+                      <Button
+                        onClick={() =>
+                          multiCtx.duplicateNote(multiCtx.currentNote.path)
+                        }
+                        text={"Duplicate"}
+                        icon="copy"
+                      />
+                      <Button
+                        className="red"
+                        onClick={() => setDeleting(!deleting)}
+                        text={"Delete"}
+                        icon={"trash2"}
+                      />
+                      {deleting && (
+                        <Button
+                          className="red"
+                          onClick={() => {
+                            multiCtx.deleteNote(multiCtx.currentNote.path);
+                            multiCtx.setCurrentNote([]);
+                            setDeleting(false);
+                          }}
+                          // text={"Delete"}
+                          icon={"question-lg"}
+                        />
+                      )}
+                    </>
+                  )}
+              </ButtonGroup>
+            </div>
             <ButtonGroup size="sm">
               <Button
                 onClick={() =>

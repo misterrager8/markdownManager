@@ -7,6 +7,7 @@ import { createContext, useEffect, useState } from "react";
 import Home from "./components/pages/Home";
 import Nav from "./components/organisms/Nav";
 import { api, defaultSettings } from "./util";
+import Button from "./components/atoms/Button";
 
 export const MultiContext = createContext();
 

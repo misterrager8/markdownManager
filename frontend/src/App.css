@@ -24,15 +24,16 @@ body {
 }
 
 .border-end {
-  border-color: var(--primary-txt) !important;
+  border-color: var(--btn-color) !important;
   border-right-style: dotted !important;
 }
 
 .form-control,
 .form-control:focus {
-  background-color: var(--primary-bg);
+  background-color: var(--secondary-bg);
   color: var(--primary-txt);
-  border-color: var(--primary-txt);
+  /* border-color: var(--primary-txt); */
+  border: 0;
   resize: none;
 }
 
@@ -116,8 +117,8 @@ a:hover {
 
 .badge {
   font-weight: inherit;
-  color: inherit;
-  border: 1px solid;
+  color: var(--btn-color);
+  border: 1px solid var(--btn-color);
   border-radius: 10px;
 }
 
@@ -155,4 +156,76 @@ a:hover {
 
 .full {
   height: 100vh;
+}
+
+.red {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.btn.red:hover,
+.btn.red.active {
+  color: var(--btn-hover-text);
+  background-color: var(--red);
+  border-color: transparent;
+}
+
+.orange {
+  color: var(--orange);
+  border-color: var(--orange);
+}
+
+.btn.orange:hover,
+.btn.orange.active {
+  color: var(--btn-hover-text);
+  background-color: var(--orange);
+  border-color: transparent;
+}
+
+.green {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.btn.green:hover,
+.btn.green.active {
+  color: var(--btn-hover-text);
+  background-color: var(--green);
+  border-color: transparent;
+}
+
+.blue {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn.blue:hover,
+.btn.blue.active {
+  color: var(--btn-hover-text);
+  background-color: var(--blue);
+  border-color: transparent;
+}
+
+.green {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.btn.green:hover,
+.btn.green.active {
+  color: var(--btn-hover-text);
+  background-color: var(--green);
+  border-color: transparent;
+}
+
+.purple {
+  color: var(--purple);
+  border-color: var(--purple);
+}
+
+.btn.purple:hover,
+.btn.purple.active {
+  color: var(--btn-hover-text);
+  background-color: var(--purple);
+  border-color: transparent;
 }

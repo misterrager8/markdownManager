@@ -46,13 +46,13 @@ export default function FolderItem({ item }) {
         {deleting && (
           <Button
             onClick={() => multiCtx.deleteFolder(item)}
-            className="border-0"
+            className="border-0 red"
             icon="question-lg"
           />
         )}
         <Button
           onClick={() => setDeleting(!deleting)}
-          className="border-0"
+          className="border-0 red"
           icon="trash2"
         />
       </ButtonGroup>
