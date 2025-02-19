@@ -249,3 +249,20 @@ a:hover {
 ::-webkit-scrollbar-thumb {
   background-color: var(--btn-color);
 }
+
+.item.selected > .between > .badge {
+  color: var(--btn-hover-text);
+  border-color: var(--btn-hover-text);
+}
+
+.col-2 {
+  width: 20%;
+}
+
+.col-10 {
+  width: 80%;
+}
+
+.col-5 {
+  width: 40%;
+}

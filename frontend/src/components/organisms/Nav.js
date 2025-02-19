@@ -172,7 +172,7 @@ export default function Nav({ className }) {
                           (multiCtx.currentNote.favorited ? "-fill" : "")
                         }
                         className={
-                          "purple" +
+                          "orange" +
                           (multiCtx.currentNote.favorited ? " active" : "")
                         }
                       />
