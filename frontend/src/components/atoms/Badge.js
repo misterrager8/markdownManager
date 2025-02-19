@@ -1,7 +1,7 @@
-export default function Badge({ className, icon, text }) {
+export default function Badge({ text, icon, className = "" }) {
   return (
     <span className={className + " badge"}>
-      {icon && <i className={"bi bi-" + icon + (text ? " me-1" : "")}></i>}
+      {icon && <i className={"bi bi-" + icon}></i>}
       {text}
     </span>
   );

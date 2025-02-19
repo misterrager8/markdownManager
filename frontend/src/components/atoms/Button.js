@@ -1,19 +1,25 @@
-import { useEffect, useState } from "react";
-
 export default function Button({
   text,
-  type_ = "button",
   onClick,
-  icon,
+  type_ = "button",
   size = "sm",
   className = "",
+  icon,
+  border = true,
+  active = false,
 }) {
   return (
     <button
       onClick={onClick}
       type={type_}
-      className={className + " btn " + `btn-${size}`}>
-      {icon && <i className={(text ? "me-2 " : "") + "bi bi-" + icon}></i>}
+      className={
+        className +
+        " btn" +
+        (size ? ` btn-${size}` : "") +
+        (active ? " active" : "") +
+        (border ? "" : " border-0")
+      }>
+      {icon && <i className={(text ? "me-1" : "") + (" bi bi-" + icon)}></i>}
       {text}
     </button>
   );
